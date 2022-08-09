@@ -1,0 +1,1 @@
+export { UsecaseDescription } from './usecase-description'
