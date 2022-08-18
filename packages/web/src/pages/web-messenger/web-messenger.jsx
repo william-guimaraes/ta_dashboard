@@ -43,6 +43,7 @@ export const WebMessengerPage = () => {
               <Option value={routes.messenger.left_widget}>Custom CSS - Left Widget</Option>
               <Option value={routes.messenger.top_messages}>Custom CSS - Top to Bottom Messages</Option>
               <Option value={routes.messenger.toggle_input_field}>Toggle Input Field</Option>
+              <Option value={routes.messenger.mock_messages}>Add Mock Messages</Option>
             </Select>
           </S.Selector>
           <S.ActionsContainer>
