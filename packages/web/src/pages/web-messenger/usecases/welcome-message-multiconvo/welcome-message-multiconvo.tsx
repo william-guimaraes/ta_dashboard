@@ -8,10 +8,10 @@ const smoochConfig = {
 }
 
 const initSmooch = async () => {
+    await window.Smooch.init(smoochConfig)
     window.Smooch.on('ready', () => {
         addMessengerWelcomeEvent()
     })
-    await window.Smooch.init(smoochConfig)
 }
 
 export const WelcomeMulticonvoUseCase = () => {
