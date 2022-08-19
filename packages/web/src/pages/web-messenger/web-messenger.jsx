@@ -45,6 +45,7 @@ export const WebMessengerPage = () => {
               <Option value={routes.messenger.toggle_input_field}>Toggle Input Field</Option>
               <Option value={routes.messenger.mock_messages}>Add Mock Messages</Option>
               <Option value={routes.messenger.hide_agent_name}>Hide Agent Name</Option>
+              <Option value={routes.messenger.new_conversation_override}>Override New Conversation Button</Option>
             </Select>
           </S.Selector>
           <S.ActionsContainer>
