@@ -8,7 +8,8 @@ import {
     LeftWidgetUseCase,
     MessagesTopUseCase,
     ToggleInputFieldUseCase,
-    MockMessagesUseCase
+    MockMessagesUseCase,
+    HideAgentNameUseCase
 } from "pages/web-messenger/usecases"
 
 export const routes = {
@@ -22,7 +23,8 @@ export const routes = {
         left_widget: 'left-widget',
         top_messages: 'top_messages',
         toggle_input_field: 'toggle-input-field',
-        mock_messages: 'mock-messages'
+        mock_messages: 'mock-messages',
+        hide_agent_name: 'hide-agent-name'
     }
 }
 
@@ -38,5 +40,6 @@ export const AppRoutes = () => <Routes>
         <Route path={routes.messenger.top_messages} element={<MessagesTopUseCase />} />
         <Route path={routes.messenger.toggle_input_field} element={<ToggleInputFieldUseCase />} />
         <Route path={routes.messenger.mock_messages} element={<MockMessagesUseCase />} />
+        <Route path={routes.messenger.hide_agent_name} element={<HideAgentNameUseCase />} />
     </Route>
 </Routes>
