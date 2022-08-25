@@ -1,20 +1,19 @@
 import { useEffect } from 'react';
 import { RestartMessengerBtn, UsecaseDescription, CodeContainer } from 'components';
-import { addMessengerWelcomeEvent } from './utils'
+import { addOnclickListener } from './utils'
 import { codeExample } from './code-example';
 
 const smoochConfig = {
-    integrationId: process.env.REACT_APP_WEBMESSENGER_INTID,
+    integrationId: process.env.REACT_APP_WEBMESSENGER_INTID
 }
 
 const initSmooch = async () => {
-    await window.Smooch.init(smoochConfig)
-    window.Smooch.on('ready', () => {
-        addMessengerWelcomeEvent()
+    await window.Smooch.init(smoochConfig).then(function () {
+        addOnclickListener()
     })
 }
 
-export const WelcomeMulticonvoUseCase = () => {
+export const NewConversationOverrideUseCase = () => {
     useEffect(() => {
         initSmooch()
 
@@ -24,7 +23,7 @@ export const WelcomeMulticonvoUseCase = () => {
     }, [])
 
     return <>
-        <UsecaseDescription description='This example shows how to add a introductory message on top of the conversation when multi convo is enabled.' />
+        <UsecaseDescription description='This example shows how to override the New Conversation button for custom behaviour. In this example, a new empty conversation is forcefully created.' />
         <RestartMessengerBtn config={smoochConfig} />
         <CodeContainer>
             {codeExample}

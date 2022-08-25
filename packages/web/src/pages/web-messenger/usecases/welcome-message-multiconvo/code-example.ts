@@ -1,11 +1,11 @@
 export const codeExample = `
 //Add the welcome event listener when the web messenger is ready
 const initSmooch = async () => {
+    await window.Smooch.init(smoochConfig)
+
     window.Smooch.on('ready', () => {
         addMessengerWelcomeEvent()
     })
-
-    await window.Smooch.init(smoochConfig)
 }
 
 //This function finds the Web Messenger element and attaches the event listener to add the welcome message
