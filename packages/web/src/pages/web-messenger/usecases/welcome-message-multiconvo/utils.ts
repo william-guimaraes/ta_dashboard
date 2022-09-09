@@ -19,8 +19,6 @@ export const addMessengerWelcomeEvent = () => {
     messengerContent.addEventListener('click', () => {
         setTimeout(async () => {
             addWelcomeMessage()
-            const conversation = await window.Smooch.getConversationById()
-            console.log('conversation', conversation)
         }, 300)
     })
 }
