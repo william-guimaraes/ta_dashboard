@@ -1,6 +1,6 @@
 const createWelcomeMessage = (targetParent: HTMLDivElement | null) => {
     
-    if (!targetParent || targetParent.hasChildNodes()) return
+    if (!targetParent) return
     const parentChildren = Array.from(targetParent.children)
     parentChildren.forEach((child) => {
         if(child.tagName === 'P') return
