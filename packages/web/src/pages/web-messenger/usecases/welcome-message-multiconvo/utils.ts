@@ -1,10 +1,9 @@
 const createWelcomeMessage = (targetParent: HTMLDivElement | null) => {
-    
     if (!targetParent) return
     const parentChildren = Array.from(targetParent.children)
-    parentChildren.forEach((child) => {
-        if(child.tagName === 'P') return
-    })
+    for (const element of parentChildren) {
+        if(element.tagName === 'P') return
+    }
     const welcomeMessage = document.createElement('p')
     welcomeMessage.innerText = 'Hello, how can I help you?'
     targetParent.appendChild(welcomeMessage)
