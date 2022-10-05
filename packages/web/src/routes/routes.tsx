@@ -10,7 +10,8 @@ import {
     ToggleInputFieldUseCase,
     MockMessagesUseCase,
     HideAgentNameUseCase,
-    NewConversationOverrideUseCase
+    NewConversationOverrideUseCase,
+    EmbeddedCustomUIUseCase
 } from "pages/web-messenger/usecases"
 
 export const routes = {
@@ -26,7 +27,8 @@ export const routes = {
         toggle_input_field: 'toggle-input-field',
         mock_messages: 'mock-messages',
         hide_agent_name: 'hide-agent-name',
-        new_conversation_override: 'new-conversation-override'
+        new_conversation_override: 'new-conversation-override',
+        embedded_custom_ui: 'embedded-custom-ui'
     }
 }
 
@@ -44,5 +46,6 @@ export const AppRoutes = () => <Routes>
         <Route path={routes.messenger.mock_messages} element={<MockMessagesUseCase />} />
         <Route path={routes.messenger.hide_agent_name} element={<HideAgentNameUseCase />} />
         <Route path={routes.messenger.new_conversation_override} element={<NewConversationOverrideUseCase />} />
+        <Route path={routes.messenger.embedded_custom_ui} element={<EmbeddedCustomUIUseCase />} />
     </Route>
 </Routes>
