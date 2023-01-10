@@ -43,3 +43,9 @@ export const getConversations = () => {
         })
     });
 }
+
+export const refreshConversations = () => {
+    const conversationsContainer = document.getElementById('conversations-container') as HTMLDivElement;
+    conversationsContainer.innerHTML = '';
+    getConversations();
+}
