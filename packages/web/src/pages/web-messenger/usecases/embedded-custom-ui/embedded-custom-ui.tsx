@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { Card } from 'antd'
+import { Button, Card } from 'antd'
 import { RestartMessengerBtn, UsecaseDescription, CodeContainer } from 'components';
-import { addAgentMessage, addUserMessage, sendUserMessage, getConversations } from './utils'
+import { addAgentMessage, addUserMessage, sendUserMessage, getConversations, refreshConversations } from './utils'
 import { codeExample } from './code-example';
 
 import * as S from './styles'
@@ -26,7 +26,12 @@ const initSmooch = () => {
     })
 
     document.addEventListener('click', (event: any) => {
-        if (event.target!.tagName!.toLowerCase() === 'button') {
+        if (event.target!.innerText === 'New Conversation') {
+            window.Smooch.createConversation().then((_conversation: any) => {
+                refreshConversations();
+            })
+        }
+        else if (event.target!.tagName!.toLowerCase() === 'button') {
             sendUserMessage(event.target.id);
         }
     })
@@ -44,6 +49,7 @@ export const EmbeddedCustomUIUseCase = () => {
     return <S.Container>
         <UsecaseDescription description='This example shows how to build a custom UI while using SunCo Web SDK as a communication layer. This example uses multi-convo, single-convo will be much easier to handle. This example only supports text messages and is very bare bones.' />
         <RestartMessengerBtn config={smoochConfig} />
+        <Button type="primary">New Conversation</Button>
         <Card hidden={true} id="chat-container"/>
         <S.ActionsContainer id="conversations-container" />
         <CodeContainer>
