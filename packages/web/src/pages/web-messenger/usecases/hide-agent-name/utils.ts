@@ -11,21 +11,8 @@ export const modifyConversationList = () => {
             }
         }
     });
-}
 
-export const modifyTypingIndicator = () => {
-    const webMessenger = document.getElementById('web-messenger-container') as HTMLIFrameElement
-    const messengerContent = webMessenger.contentDocument as Document
-    const typingIndicator = messengerContent.getElementsByClassName('typing-indicator-container')[0]
-    if (!typingIndicator) return
-    const nameChild = typingIndicator.querySelector('.from') as HTMLDivElement
-    if (nameChild) nameChild.innerText = 'agentName'
-    const avatarChild = typingIndicator.querySelector('.typing-indicator-avatar') as HTMLImageElement
-    if (avatarChild) {
-        avatarChild.src = 'https://www.gravatar.com/avatar/00000000000000000000000000000000.png?s=200&d=mm'
-        avatarChild.alt = 'agentName Avatar'
-    }
-
+    triggerTypingMutationObserver()
 }
 
 export const triggerMutationObserver = () => {
@@ -52,5 +39,38 @@ export const triggerMutationObserver = () => {
     const buttonElem = messengerContent.querySelector('.messenger-button-shown');
     if (buttonElem) {
         observer.observe(buttonElem, observerOptions);
+    }
+
+    setTimeout(() => triggerTypingMutationObserver(), 500)
+}
+
+const triggerTypingMutationObserver = () => {
+    const webMessenger = document.getElementById('web-messenger-container') as HTMLIFrameElement
+    const messengerContent = webMessenger.contentDocument as Document
+    const observer = new MutationObserver(modifyTypingIndicator);
+  
+    const observerOptions = {
+        childList: true,
+        attributes: false,
+        subtree: false
+    }
+
+    const messagesListElem = messengerContent.querySelector('.messages');
+    if (messagesListElem) {
+        observer.observe(messagesListElem, observerOptions);
+    }
+}
+
+const modifyTypingIndicator = () => {
+    const webMessenger = document.getElementById('web-messenger-container') as HTMLIFrameElement
+    const messengerContent = webMessenger.contentDocument as Document
+    const typingIndicator = messengerContent.getElementsByClassName('typing-indicator-container')[0]
+    if (!typingIndicator) return
+    const nameChild = typingIndicator.querySelector('.from') as HTMLDivElement
+    if (nameChild) nameChild.innerText = 'agentName'
+    const avatarChild = typingIndicator.querySelector('.typing-indicator-avatar') as HTMLImageElement
+    if (avatarChild) {
+        avatarChild.src = 'https://www.gravatar.com/avatar/00000000000000000000000000000000.png?s=200&d=mm'
+        avatarChild.alt = 'agentName Avatar'
     }
 }

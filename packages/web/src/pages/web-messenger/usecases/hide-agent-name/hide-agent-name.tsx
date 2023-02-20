@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { RestartMessengerBtn, UsecaseDescription, CodeContainer } from 'components';
-import { modifyTypingIndicator, modifyConversationList, triggerMutationObserver } from './utils'
+import { modifyConversationList, triggerMutationObserver } from './utils'
 import { codeExample } from './code-example';
 
 const smoochConfig = {
@@ -21,13 +21,13 @@ const initSmooch = async () => {
         triggerMutationObserver()
     })
 
-    window.Smooch.on('typing:start', function(_data: any) {
-        modifyTypingIndicator()
-    })
-
     window.Smooch.on('message:received', function (_message: any, _data: any) {
         modifyConversationList();
     })
+
+    window.Smooch.on('widget:opened', function () {
+        triggerMutationObserver()
+    });
 }
 
 export const HideAgentNameUseCase = () => {

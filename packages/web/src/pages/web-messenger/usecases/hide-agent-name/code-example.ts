@@ -68,4 +68,22 @@ const triggerMutationObserver = () => {
         observer.observe(buttonElem, observerOptions);
     }
 }
+
+// Requires delay before calling this on init
+const triggerTypingMutationObserver = () => {
+    const webMessenger = document.getElementById('web-messenger-container') as HTMLIFrameElement
+    const messengerContent = webMessenger.contentDocument as Document
+    const observer = new MutationObserver(modifyTypingIndicator);
+  
+    const observerOptions = {
+        childList: true,
+        attributes: false,
+        subtree: false
+    }
+
+    const messagesListElem = messengerContent.querySelector('.messages');
+    if (messagesListElem) {
+        observer.observe(messagesListElem, observerOptions);
+    }
+}
 `
