@@ -122,4 +122,33 @@ export const disablePreviousButtonsInConversation = () => {
         }
     }
 }
+
+// This example requires at least 1 message in the conversation.
+export const showTypingIndicator = () => {
+    const webMessenger = document.getElementById('web-messenger-container') as HTMLIFrameElement
+    const messengerContent = webMessenger.contentDocument as Document
+    var conversationContainer = messengerContent.getElementById("conversation");
+    var conversationElements = messengerContent.getElementsByClassName("row");
+    var lastConversationElement = conversationElements[conversationElements.length - 1]
+    // Create typing indicator element
+    var typingIndicatorElement = document.createElement("div")
+    typingIndicatorElement.setAttribute('id','typing-indicator-element');
+    var agentProfileImageUrl = 'https://www.gravatar.com/avatar/00000000000000000000000000000000.png?s=200&d=mm'
+    typingIndicatorElement.innerHTML = '<div class="msg-wrapper" style="display: flex;align-items: center;"><div class="msg-avatar"><img src="' + agentProfileImageUrl + '" class="typing-indicator-avatar"></div><span class="typing-indicator-container fade-in"><div class="typing-indicator typing-indicator-first"><span></span><span></span><span></span></div></span></div>'
+    // Add typing indicator element after last conversation element
+    lastConversationElement?.insertAdjacentElement("afterend", typingIndicatorElement);
+    // Move dropdown below
+    conversationContainer?.scrollBy(0, 100);
+}
+
+export const hideTypingIndicator = () => {
+    const webMessenger = document.getElementById('web-messenger-container') as HTMLIFrameElement
+    const messengerContent = webMessenger.contentDocument as Document
+    // Check if typing indicator is existing
+    var typingIndicatorElement = messengerContent.getElementById("typing-indicator-element");
+    // Remove element if it exists
+    if(typingIndicatorElement){
+        typingIndicatorElement.remove();
+    }
+}
 `
