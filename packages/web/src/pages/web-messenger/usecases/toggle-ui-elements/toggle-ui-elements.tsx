@@ -57,7 +57,7 @@ export const ToggleUIElementsUseCase = () => {
                     <Button type="primary" onClick={() => window.location.reload()}>Enable Postback Buttons [Restart/Refresh]</Button>
                 </S.ActionCard>
             </Card>
-            <Card title="Toggle Loading Indicator [In Conversation]">
+            <Card title="Toggle Typing Indicator [In Conversation]">
                 <S.ActionCard>
                     <Button type="primary" onClick={() => showTypingIndicator()}>Show Typing Indicator</Button>
                     <Button type="primary" onClick={() => hideTypingIndicator()}>Hide Typing Indicator</Button>
