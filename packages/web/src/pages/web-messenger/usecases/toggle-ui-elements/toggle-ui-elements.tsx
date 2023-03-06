@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Button, Card } from 'antd'
 import { RestartMessengerBtn, UsecaseDescription, CodeContainer } from 'components';
-import { showInputField, hideInputField, showModal, showCustomButton, hideCustomButton, showBanner, hideBanner, disablePreviousButtonsInConversation, showTypingIndicator, hideTypingIndicator } from './utils'
+import { showInputField, hideInputField, showModal, showCustomButton, hideCustomButton, showBanner, hideBanner, disablePreviousButtonsInConversation, showTypingIndicator, hideTypingIndicator, showCustomLoader, hideCustomLoader } from './utils'
 import { codeExample } from './code-example';
 
 import * as S from './styles'
@@ -61,6 +61,12 @@ export const ToggleUIElementsUseCase = () => {
                 <S.ActionCard>
                     <Button type="primary" onClick={() => showTypingIndicator()}>Show Typing Indicator</Button>
                     <Button type="primary" onClick={() => hideTypingIndicator()}>Hide Typing Indicator</Button>
+                </S.ActionCard>
+            </Card>
+            <Card title="Toggle Custom Loader [In Conversation]">
+                <S.ActionCard>
+                    <Button type="primary" onClick={() => showCustomLoader()}>Show Custom Loader</Button>
+                    <Button type="primary" onClick={() => hideCustomLoader()}>Hide Custom Loader</Button>
                 </S.ActionCard>
             </Card>
         </S.ActionsContainer>
