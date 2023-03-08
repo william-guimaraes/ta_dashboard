@@ -122,4 +122,107 @@ export const disablePreviousButtonsInConversation = () => {
         }
     }
 }
+
+// This example requires at least 1 message in the conversation.
+export const showTypingIndicator = () => {
+    const webMessenger = document.getElementById('web-messenger-container') as HTMLIFrameElement
+    const messengerContent = webMessenger.contentDocument as Document
+    var conversationContainer = messengerContent.getElementById("conversation");
+    var conversationElements = messengerContent.getElementsByClassName("row");
+    var lastConversationElement = conversationElements[conversationElements.length - 1]
+    // Create typing indicator element
+    var typingIndicatorElement = document.createElement("div")
+    typingIndicatorElement.setAttribute('id','typing-indicator-element');
+    var agentProfileImageUrl = 'https://www.gravatar.com/avatar/00000000000000000000000000000000.png?s=200&d=mm'
+    typingIndicatorElement.innerHTML = '<div class="msg-wrapper" style="display: flex;align-items: center;"><div class="msg-avatar"><img src="' + agentProfileImageUrl + '" class="typing-indicator-avatar"></div><span class="typing-indicator-container fade-in"><div class="typing-indicator typing-indicator-first"><span></span><span></span><span></span></div></span></div>'
+    // Add typing indicator element after last conversation element
+    lastConversationElement?.insertAdjacentElement("afterend", typingIndicatorElement);
+    // Move dropdown below
+    conversationContainer?.scrollBy(0, 100);
+}
+
+export const hideTypingIndicator = () => {
+    const webMessenger = document.getElementById('web-messenger-container') as HTMLIFrameElement
+    const messengerContent = webMessenger.contentDocument as Document
+    // Check if typing indicator is existing
+    var typingIndicatorElement = messengerContent.getElementById("typing-indicator-element");
+    // Remove element if it exists
+    if(typingIndicatorElement){
+        typingIndicatorElement.remove();
+    }
+}
+
+export const showCustomLoader = () => {
+    const webMessenger = document.getElementById('web-messenger-container') as HTMLIFrameElement
+    const messengerContent = webMessenger.contentDocument as Document
+    var conversationContainer = messengerContent.getElementById("conversation");
+    var conversationElements = messengerContent.getElementsByClassName("row");
+    var lastConversationElement = conversationElements[conversationElements.length - 1]
+
+    var customLoaderElement = messengerContent.getElementById("custom-loader-spinner");
+    if (!customLoaderElement) {
+        customLoaderElement = document.createElement("div")
+        customLoaderElement.setAttribute('id','custom-loader-spinner');
+        customLoaderElement.style.border = "3px solid #dddddd";
+        customLoaderElement.style.borderTop = "3px solid #346aff";
+        customLoaderElement.style.borderBottom = "3px solid #346aff";
+        customLoaderElement.style.borderLeft = "3px solid#346aff";
+        customLoaderElement.style.borderRadius = "50%";
+        customLoaderElement.style.width = "32px";
+        customLoaderElement.style.margin = "0 auto";
+        customLoaderElement.style.height = "32px";
+        const circleSpinning = [
+            { transform: 'rotate(0)' },
+            { transform: 'rotate(360deg)' }
+        ];
+        const circleTiming = {
+            duration: 800,
+            iterations: Infinity,
+        }
+        customLoaderElement.animate(circleSpinning, circleTiming);
+
+        // Add typing indicator element after last conversation element
+        lastConversationElement.insertAdjacentElement("afterend", customLoaderElement);
+    }
+    
+    var loaderTextElement = messengerContent.getElementById("custom-loader-text");
+    if (!loaderTextElement) {
+        loaderTextElement = document.createElement("div");
+        loaderTextElement.innerHTML = 'Loading...'
+        loaderTextElement.setAttribute('id','custom-loader-text');
+        loaderTextElement.style.textAlign = "center";
+        loaderTextElement.style.padding = "10px 12px 0";
+        loaderTextElement.style.borderRadius = "20px";
+        loaderTextElement.style.color = "#373434";
+        loaderTextElement.style.backgroundColor = "#f4f6f8";
+        loaderTextElement.style.width = "fit-content";
+        loaderTextElement.style.display = "block";
+        loaderTextElement.style.justifyContent = "center";
+        loaderTextElement.style.paddingBottom = "10px";
+        loaderTextElement.style.marginLeft = "auto";
+        loaderTextElement.style.marginRight = "auto";
+        loaderTextElement.style.marginTop = "30px";
+        customLoaderElement.insertAdjacentElement("afterend", loaderTextElement);
+    }
+
+    // Move dropdown below
+    conversationContainer?.scrollBy(0, 200);
+    setTimeout(function () {
+        conversationContainer?.scrollBy(0, 200);
+    }, 500);
+}
+
+export const hideCustomLoader = () => {
+    const webMessenger = document.getElementById('web-messenger-container') as HTMLIFrameElement
+    const messengerContent = webMessenger.contentDocument as Document
+  
+    var waitingForAgentIndicatorElement = messengerContent.getElementById("custom-loader-spinner");
+    if (waitingForAgentIndicatorElement) {
+        waitingForAgentIndicatorElement.remove();
+    }
+    var waitingForAgentIndicatorLabelElement = messengerContent.getElementById("custom-loader-text");
+    if (waitingForAgentIndicatorLabelElement) {
+        waitingForAgentIndicatorLabelElement.remove();
+    }
+}
 `
